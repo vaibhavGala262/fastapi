@@ -4,7 +4,7 @@ import models
 from database import engine , get_db
 from routers import posts , users , auth , vote
 from fastapi.middleware.cors import CORSMiddleware
-
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
 app = FastAPI()
 
 origins= [
@@ -19,6 +19,16 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+)
+
+
+app.add_middleware(
+    TrustedHostMiddleware,
+    allowed_hosts=[
+        "localhost",
+        "127.0.0.1",
+        "vaibhavs-fastapi.onrender.com"
+    ]
 )
 
 app.include_router(posts.router)
