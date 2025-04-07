@@ -3,6 +3,12 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from config import settings
 
+from dotenv import load_dotenv
+load_dotenv()  
+
+
+
+
 DATABASE_URL = (
     f"postgresql://{settings.database_username}:"
     f"{settings.database_password}@"
